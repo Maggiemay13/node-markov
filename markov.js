@@ -18,7 +18,7 @@ class MarkovMachine {
     let chains = new Map();
     for (let i = 0; i < this.words.length; i += 1) {
       let word = this.words[i];
-      let nextWord = this.words[i + 1];
+      let nextWord = this.words[i + 1] || null;
 
       if (chains.has(word)) chains.get(word).push(nextWord);
       else chains.set(word, [nextWord]);
@@ -43,7 +43,7 @@ class MarkovMachine {
       out.push(key);
       key = MarkovMachine.choice(this.chains.get(key));
     }
-    return out.joins(" ");
+    return out.join(" ");
   }
 }
 
